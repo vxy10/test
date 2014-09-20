@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Testing normality of distribution of mean of an exponential distribution</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Testing normality of distribution of mean of an exponential distribution">
+  <meta name="author" content="Vivek Yadav">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="http://slidifylibraries2.googlecode.com/git/inst/libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/js/slides" 
+    src="http://slidifylibraries2.googlecode.com/git/inst/libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Testing normality of distribution of mean of an exponential distribution</h1>
+    <h2></h2>
+    <p>Vivek Yadav<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Why determine normality of mean of an exponential distribution</p>
+
+<ol>
+<li>In several applications, data scientists collect data from real world.</li>
+<li>This data need not be normally distributed.</li>
+<li>Most applications involve computing means from some samples, to draw inferences about data.</li>
+<li><em>It is not clear how many samples are needed. This enables you to estimate number of samples required to compute mean so normality assumptions are valid.</em></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Slide 2</h2>
+  </hgroup>
+  <article data-timings="">
+    <h2>NVD3 Plot Inline</h2>
+
+<p>Below is histogram for exponential distribution. Notice that the distribution is not gaussian.</p>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk nvd1plot"> </p>
+
+<pre><code>Error: attempt to apply non-function
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Sampling 100 means</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>100 means estimated from 40 values</li>
+<li>lambda = .2</li>
+</ol>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk nvd2plot"> </p>
+
+<pre><code>Error: attempt to apply non-function
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Sampling more means</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>What will happen if we sampled 2000 means?</p>
+
+<ol>
+<li>Means will follow exponential distribution</li>
+<li><em>Means will follow normal distribution</em></li>
+<li>Means will follow poisson distribution</li>
+<li>Means will follow binomial distribution</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-hint">
+  <p>Abnormal behavior becomes normal if repeated enough times</p>
+
+</div>
+<div class="quiz-explanation">
+  <p>Abnormal behavior becomes normal if repeated enough times</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Sampling 2000 means</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>2000 means estimated from 40 values, lambda = .2</li>
+<li>Mean eastimates follow normal distribution if enough observations are made.</li>
+</ol>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAAmVBMVEX9/v0AAAAAADkAAGUAOTkAOWUAOY8AZo8AZrU5AAA5ADk5AGU5OTk5OWU5OY85ZrU5j485j9plAABlADllAGVlOQBlOY9lZjllZmVltbVltf2POQCPOTmPOWWPZgCPj2WPtY+P27WP29qP2/21ZgC1Zjm1tWW1/rW1/v3ajzna24/a/rXa/tra/v39tWX924/9/rX9/tr9/v1fcqP9AAAAM3RSTlP//////////////////////////////////////////////////////////////////wBxnr2OAAAACXBIWXMAAAsSAAALEgHS3X78AAAPvUlEQVR4nO2da4PithVA49l0C0k7CZOkTWHSxw5th24GA///x9WSH9hgYV/LYMn3nA/LgKVr+R4ky6wf35xAJd9M3QCYBsQrBfFKQbxSEK8UxCsF8UpBvFIQrxTEKwXxSkG8UhCvFMQrBfFKQbxSEK8UxCsF8UpBvFIQrxTEKwXxSkG8UhCvlEeKP7x8ej+djptP7/lfJdu1R9B0mTy9ndfw+cMR23xsVn1ZPyvQrNFjNcObmC4XdqWfvzrW2Wyi2Z6BK+1iGvGNj7eJj/hG7atENWO3iO+7cp9Gnutuk2Rh27FyfdlmLt7+lXWExPTCxGZjl72sTmZx8um/2fYeN09/zTrKPvs46y775I/Z5+9ZoTKHeXlbO0+O+fNvZY+vx84j/Svv8f+xxW16s6z+bgvk7SoakJepsn+5mmZDzNK1/dS2sqNu9tefrPh0ubbrbNm4qonV9pSlRmY68YeXxGQkz73pC/bVpunbpRFvln7NC33sk5IirUX5Rlbzolexy0jFF8GUaRHfaEDeMdtW02hIvnR1Klb30VH3+Jp9j83CfSMDjY2rNbHanqT6co/IY8WXm2c2O10WG2NGwnSZfacPL09v6TJL6C7f8EVZ7dP7PjEVkrUpYj6rylfjaFXxKnYeKd/HW0tPb6X4D1sgr1EEtGX2RaKvV1NviF1LOTZX8d11bXWzUdvzTORy46omVttTlhpZxnTi7TuzPSYveUJ2yXqfS7JD/VtZyeRmUaQ2/7QqXzOyOE/uGrHzOufJXfbZtfgqoC1d7lvbV1M2pOipefS8u96sW3543CwKldcbVzWx2p6y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" alt="plot of chunk nvd3plot"> </p>
+
+<pre><code>Error: attempt to apply non-function
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Thank you</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Thanks for your time, and please visit the awesome shiny app at 
+<a href="http://vyb5b.shinyapps.io/dataprod_PA/">http://vyb5b.shinyapps.io/dataprod_PA/</a>.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Slide 2'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Sampling 100 means'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Sampling more means'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Sampling 2000 means'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Thank you'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title=''>
+         7
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/widgets/interactive/js/interactive.js"></script>
+
+  <script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  
+  <script src="shared/shiny.js" type="text/javascript"></script>
+  <script src="shared/slider/js/jquery.slider.min.js"></script>
+  <script src="shared/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="shared/slider/css/jquery.slider.min.css"></link>
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="http://slidifylibraries2.googlecode.com/git/inst/libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
